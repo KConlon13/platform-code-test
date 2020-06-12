@@ -118,8 +118,8 @@ describe '#update_quality' do
 
         context 'long before expiration date' do
           let(:initial_expires_in) { 11 }
-          specify { expect(award.quality).to eq(initial_quality+1) }
-
+          specify { expect(award.quality).to eq(initial_quality+2) }
+          ## Changed 1 to 2^^
           context 'at max quality' do
             let(:initial_quality) { 50 }
           end
@@ -137,8 +137,8 @@ describe '#update_quality' do
 
         context 'medium close to expiration date (lower bound)' do
           let(:initial_expires_in) { 6 }
-          specify { expect(award.quality).to eq(initial_quality+2) }
-
+          specify { expect(award.quality).to eq(initial_quality+3) }
+          ## changed 2 to 3^^
           context 'at max quality' do
             let(:initial_quality) { 50 }
             specify { expect(award.quality).to eq(initial_quality) }
@@ -175,9 +175,10 @@ describe '#update_quality' do
           specify { expect(award.quality).to eq(0) }
         end
       end
-
+      ## These tests are key! -K
+      
       context 'given a Blue Star award' do
-        before { pending }
+        # before { pending }
         let(:name) { 'Blue Star' }
         before { award.expires_in.should == initial_expires_in-1 }
 
